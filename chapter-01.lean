@@ -161,9 +161,9 @@ structure Book where
   author : String
   price : Float
 
-#eval Book
--- #eval Book.makeBook
--- #eval Book.title
--- #eval Book.author
--- #eval Book.price
+#check Book
+#check Book.makeBook
+#check Book.title
+#check Book.author
+#check Book.price
 
