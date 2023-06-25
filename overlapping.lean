@@ -11,6 +11,9 @@ instance printable_a : printable a :=
 instance printable_int: printable Nat where
   print_me n := IO.println $ s!"I am an Int with value {n}"
 
-def main := do 
-  printable.print_me "hi"
-  printable.print_me 5
+def fn [pa: printable a] (x:a) := @printable.print_me a pa x
+
+def main := do
+  fn "hi"
+  fn 5
+
