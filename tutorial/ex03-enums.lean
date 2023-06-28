@@ -2,7 +2,7 @@
 Similar to https://softwarefoundations.cis.upenn.edu/lf-current/Basics.html
 -/
 
-inductive Weekday where
+inductive Day where
   | sunday
   | monday
   | tuesday
@@ -10,13 +10,14 @@ inductive Weekday where
   | thursday
   | friday
   | saturday
+deriving Repr
 
-#check Weekday.sunday
+#check Day.sunday
 
-open Weekday
+open Day
 #check sunday
 
-def natOfWeekday (d : Weekday) : Nat :=
+def natOfWeekday (d : Day) : Nat :=
   match d with
   | sunday    => 1
   | monday    => 2
@@ -26,7 +27,7 @@ def natOfWeekday (d : Weekday) : Nat :=
   | friday    => 6
   | saturday  => 7
 
-def Weekday.next (d : Weekday) : Weekday :=
+def Day.next (d : Day) : Day :=
   match d with
   | sunday    => monday
   | monday    => tuesday
@@ -36,7 +37,7 @@ def Weekday.next (d : Weekday) : Weekday :=
   | friday    => saturday
   | saturday  => sunday
 
-def Weekday.previous : Weekday → Weekday
+def Day.previous : Day → Day
   | sunday    => saturday
   | monday    => sunday
   | tuesday   => monday
@@ -45,14 +46,30 @@ def Weekday.previous : Weekday → Weekday
   | friday    => thursday
   | saturday  => friday
 
+def Day.next_weekday (d : Day) : Day :=
+  match d with
+  | monday => tuesday
+  | tuesday => wednesday
+  | wednesday => thursday
+  | thursday => friday
+  | friday => monday
+  | saturday => monday
+  | sunday => monday
+
 /- Proving theorems using tactics -/
 
-theorem next_prev_0 (d : Weekday) : d.next.previous = d := by
+#eval saturday
+#eval saturday.next_weekday
+#eval saturday.next_weekday.next_weekday
+
+example sat_next_next: saturday.next_weekday.next_weekday = tuesday := rfl
+
+theorem next_prev_0 (d : Day) : d.next.previous = d := by
   cases d; rfl; rfl; rfl; rfl; rfl; rfl; rfl
 
 #print next_prev_0
 
-theorem next_prev_1a (d : Weekday) : d.next.previous = d := 
+theorem next_prev_1a (d : Day) : d.next.previous = d := 
   match d with
   | sunday => Eq.refl sunday.next.previous
   | monday => Eq.refl monday.next.previous
@@ -64,7 +81,7 @@ theorem next_prev_1a (d : Weekday) : d.next.previous = d :=
 
 #print next_prev_1a
 
-def next_prev_1b (d : Weekday) : d.next.previous = d := 
+def next_prev_1b (d : Day) : d.next.previous = d := 
   match d with
   | sunday => Eq.refl sunday.next.previous
   | monday => Eq.refl monday.next.previous
@@ -76,7 +93,7 @@ def next_prev_1b (d : Weekday) : d.next.previous = d :=
 
 #print next_prev_1b
 
-theorem Weekday.next_previous_0 (d : Weekday) : d.next.previous = d :=
+theorem Day.next_previous_0 (d : Day) : d.next.previous = d :=
   match d with
   | sunday    => rfl
   | monday    => rfl
@@ -86,15 +103,15 @@ theorem Weekday.next_previous_0 (d : Weekday) : d.next.previous = d :=
   | friday    => rfl
   | saturday  => rfl
 
-#print Weekday.next_previous_0
+#print Day.next_previous_0
 
-theorem Weekday.next_previous_1 (d : Weekday) : d.next.previous = d := by -- switch to tactic mode
+theorem Day.next_previous_1 (d : Day) : d.next.previous = d := by -- switch to tactic mode
   cases d -- Creates 7 goals
   rfl; rfl; rfl; rfl; rfl; rfl; rfl
 
-#print Weekday.next_previous_1
+#print Day.next_previous_1
 
-theorem Weekday.next_previous_2 (d : Weekday) : d.next.previous = d := by
+theorem Day.next_previous_2 (d : Day) : d.next.previous = d := by
   cases d <;> rfl
 
-#print Weekday.next_previous_2
+#print Day.next_previous_2
