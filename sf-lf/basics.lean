@@ -23,5 +23,6 @@ def Day.next_weekday (d : Day) : Day :=
 #eval Day.saturday.next_weekday.next_weekday
 -- Day.tuesday
 
-example test_next_weekday: Day.saturday.next_weekday.next_weekday = Day.tuesday :=
-  rfl
+example test_next_weekday:
+  Day.saturday.next_weekday.next_weekday = Day.tuesday
+:= rfl
