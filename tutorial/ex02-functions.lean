@@ -5,7 +5,8 @@ def twice (f : Nat → Nat) (a : Nat) := f (f a)
 
 #check (String.append)
 
---example: typeOf (String.append) = (String → String → String) := rfl
+def typeOf {α} (_ : α) := α
+example: typeOf String.append = (String → String → String) := rfl
 example: (String -> String -> String) = (String → String → String) := rfl
 
 example: Nat = Nat := rfl
