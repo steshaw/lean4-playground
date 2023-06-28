@@ -2,6 +2,8 @@
 
 #eval 1 + 2
 #eval 1 + 2 * 5
+#eval 1 - 2 - 1 - 2 - 10
+-- 0
 
 #eval String.append "Hello, "  "Lean"
 #eval "Hello, ".append  "Lean"
