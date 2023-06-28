@@ -1,3 +1,5 @@
+import Lean
+
 def twice (f : Nat → Nat) (a : Nat) := f (f a)
 
 #check twice
