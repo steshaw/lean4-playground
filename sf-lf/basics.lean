@@ -28,13 +28,4 @@ def Day.next_weekday (d : Day) : Day :=
 #eval Day.saturday.next_weekday.next_weekday
 -- Day.tuesday
 
-/-
-FIXME: Fails with the following message
-
-failed to infer binder type
-when the resulting type of a declaration is explicitly provided, all holes
-(e.g., `_`) in the header are resolved before the declaration body is processed
--/
-example test_next_weekday:
-  Day.saturday.next_weekday.next_weekday = Day.tuesday
-:= rfl
+example: Day.saturday.next_weekday.next_weekday = Day.tuesday := rfl
