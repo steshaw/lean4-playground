@@ -62,7 +62,7 @@ def Day.next_weekday (d : Day) : Day :=
 #eval saturday.next_weekday
 #eval saturday.next_weekday.next_weekday
 
-example sat_next_next: saturday.next_weekday.next_weekday = tuesday := rfl
+example: saturday.next_weekday.next_weekday = tuesday := rfl
 
 theorem next_prev_0 (d : Day) : d.next.previous = d := by
   cases d; rfl; rfl; rfl; rfl; rfl; rfl; rfl
