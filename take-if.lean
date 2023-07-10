@@ -19,9 +19,9 @@ def openIssues (issues : List Issue) :=
 
 def main : IO Unit := do
   let issues := [
-     { id := 1, status := Open },
-     { id := 2, status := Closed },
-     { id := 3, status := Open }
+    { id := 1, status := Open },
+    { id := 2, status := Closed },
+    { id := 3, status := Open }
   ]
   IO.println "Some open:"
   openIssues issues -- Prints "There are some open issues".
