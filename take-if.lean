@@ -1,5 +1,3 @@
---import Control.Monad (when)
-
 inductive Status where
   | Open
   | Closed
