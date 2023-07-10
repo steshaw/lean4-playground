@@ -20,15 +20,15 @@ def openIssues (issues : List Issue) :=
     IO.println "There are some open issues"
 
 def main : IO Unit := do
-  let issues :=
-        [ {id := 1, status := Open}
-        , {id := 2, status := Closed}
-        , {id := 3, status := Open}
-        ]
+  let issues := [
+     { id := 1, status := Open },
+     { id := 2, status := Closed },
+     { id := 3, status := Open }
+  ]
   IO.println "Some open:"
   openIssues issues -- Prints "There are some open issues".
   let allClosed := issues.map $ fun it =>
-   if it.status == Open then { it with status := Closed } else it
+    if it.status == Open then { it with status := Closed } else it
   IO.println "All closed:"
   openIssues allClosed -- Prints nothing.
 
