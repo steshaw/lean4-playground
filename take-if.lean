@@ -10,7 +10,7 @@ structure Issue where
   status : Status
 deriving BEq, Repr
 
-def when (b: Bool) (act: IO Unit) : IO Unit :=
+def when [Applicative m] (b : Bool) (act : m Unit) : m Unit :=
   if b then act else pure ()
 
 def openIssues (issues : List Issue) := 
