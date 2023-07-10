@@ -10,11 +10,8 @@ structure Issue where
   status : Status
 deriving BEq, Repr
 
-def when [Applicative m] (b : Bool) (act : m Unit) : m Unit :=
-  if b then act else pure ()
-
-def openIssues (issues : List Issue) := 
-  when (issues.any (fun it => it.status == Open)) <|
+def openIssues (issues : List Issue) := do
+  if (issues.any (fun it => it.status == Open)) then
     IO.println "There are some open issues"
 
 def main : IO Unit := do
