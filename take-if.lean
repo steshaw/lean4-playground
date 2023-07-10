@@ -25,7 +25,7 @@ def main : IO Unit := do
   ]
   IO.println "Some open:"
   openIssues issues -- Prints "There are some open issues".
-  let allClosed := issues.map $ fun it =>
+  let allClosed := issues <&> fun it =>
     if it.status == Open then { it with status := Closed } else it
   IO.println "All closed:"
   openIssues allClosed -- Prints nothing.
